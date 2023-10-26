@@ -17,11 +17,19 @@
     "dist"
   ],
   "main": "dist/index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "tsx scripts/test.ts",
+    "build": "tsx scripts/build.ts",
+    "publish:stable": "tsx scripts/publish.ts"
+  },
   "devDependencies": {
+    "@types/node": "^20.8.9",
     "@types/react": "^18.2.33",
+    "pmex": "^0.0.35",
     "prettier": "^3.0.3",
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "tsx": "^3.14.0",
+    "typescript": "^5.2.2"
   },
   "peerDependencies": {
     "react": "*"
