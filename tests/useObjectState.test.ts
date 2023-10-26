@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
-import { useObjectState } from '../src';
+import useObjectState from '../src/useObjectState';
 
 type Person = {
   name: string;
