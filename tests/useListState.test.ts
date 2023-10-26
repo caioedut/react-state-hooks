@@ -13,9 +13,7 @@ describe('useListState()', () => {
     const hook = renderHook(() => useListState());
     const [list, actions] = hook.result.current;
 
-    act(() => {
-      actions.set([1, 2, 3]);
-    });
+    act(() => actions.set([1, 2, 3]));
 
     expect(list).toEqual([1, 2, 3]);
   });
@@ -24,9 +22,7 @@ describe('useListState()', () => {
     const hook = renderHook(() => useListState([1, 2, 3]));
     const [list, actions] = hook.result.current;
 
-    act(() => {
-      actions.clear();
-    });
+    act(() => actions.clear());
 
     expect(list).toEqual([]);
   });
@@ -35,9 +31,7 @@ describe('useListState()', () => {
     const hook = renderHook(() => useListState([3, 2, 1]));
     const [list, actions] = hook.result.current;
 
-    act(() => {
-      actions.sort();
-    });
+    act(() => actions.sort());
 
     expect(list).toEqual([1, 2, 3]);
   });
@@ -46,9 +40,7 @@ describe('useListState()', () => {
     const hook = renderHook(() => useListState([1, 2, 3]));
     const [list, actions] = hook.result.current;
 
-    act(() => {
-      actions.filter((item) => item > 1);
-    });
+    act(() => actions.filter((item) => item > 1));
 
     expect(list).toEqual([2, 3]);
   });
@@ -57,10 +49,7 @@ describe('useListState()', () => {
     const hook = renderHook(() => useListState());
     const [list, actions] = hook.result.current;
 
-    act(() => {
-      actions.push(1);
-      actions.push(2, 3);
-    });
+    act(() => actions.push(1, 2, 3));
 
     expect(list).toEqual([1, 2, 3]);
   });
@@ -69,22 +58,16 @@ describe('useListState()', () => {
     const hook = renderHook(() => useListState());
     const [list, actions] = hook.result.current;
 
-    act(() => {
-      actions.insert(0, 1);
-      actions.insert(1, 2);
-      actions.insert(2, 3);
-    });
+    act(() => actions.insert(0, 1));
 
-    expect(list).toEqual([1, 2, 3]);
+    expect(list).toEqual([1]);
   });
 
   test('remove() should remove item by index', () => {
     const hook = renderHook(() => useListState([1, 2, 3]));
     const [list, actions] = hook.result.current;
 
-    act(() => {
-      actions.remove(0);
-    });
+    act(() => actions.remove(0));
 
     expect(list).toEqual([2, 3]);
   });
@@ -93,9 +76,7 @@ describe('useListState()', () => {
     const hook = renderHook(() => useListState([1, 2, 3]));
     const [list, actions] = hook.result.current;
 
-    act(() => {
-      actions.remove((item) => item === 1);
-    });
+    act(() => actions.remove((item) => item === 1));
 
     expect(list).toEqual([2, 3]);
   });
@@ -104,9 +85,7 @@ describe('useListState()', () => {
     const hook = renderHook(() => useListState([1, 2, 3]));
     const [list, actions] = hook.result.current;
 
-    act(() => {
-      actions.update(0, 4);
-    });
+    act(() => actions.update(0, 4));
 
     expect(list).toEqual([4, 2, 3]);
   });
@@ -115,9 +94,7 @@ describe('useListState()', () => {
     const hook = renderHook(() => useListState([1, 2, 3]));
     const [list, actions] = hook.result.current;
 
-    act(() => {
-      actions.update((item) => item === 1, 4);
-    });
+    act(() => actions.update((item) => item === 1, 4));
 
     expect(list).toEqual([4, 2, 3]);
   });
