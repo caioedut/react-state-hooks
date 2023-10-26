@@ -13,9 +13,6 @@
     "name": "Caio Teixeira",
     "email": "caioedut@gmail.com"
   },
-  "files": [
-    "dist/**.*"
-  ],
   "main": "index.js",
   "scripts": {
     "test": "tsx scripts/test.ts",
