@@ -1,5 +1,5 @@
 {
-  "name": "react-hook-state",
+  "name": "react-state-hooks",
   "version": "0.0.1",
   "keywords": [
     "react",
@@ -8,7 +8,7 @@
     "state"
   ],
   "license": "MIT",
-  "repository": "https://github.com/caioedut/react-hook-state",
+  "repository": "https://github.com/caioedut/react-state-hooks",
   "author": {
     "name": "Caio Teixeira",
     "email": "caioedut@gmail.com"
