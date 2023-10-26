@@ -1,11 +1,14 @@
 import pmex from 'pmex';
 import { execSync } from 'child_process';
+import { copyFileSync } from 'fs';
 
 pmex('test');
 
-pmex('tsc --build --force');
+pmex('build');
 
 pmex('npm version patch');
+
+copyFileSync('package.json', 'dist/package.json');
 
 // pmex('npm publish');
 
