@@ -14,7 +14,7 @@
     "email": "caioedut@gmail.com"
   },
   "files": [
-    "dist"
+    "dist/**.*"
   ],
   "main": "index.js",
   "scripts": {
