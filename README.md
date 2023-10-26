@@ -2,16 +2,14 @@
   <h1>⚛️ React State Hooks</h1>
   <p>Collection of hooks to manage state.</p>
 
-  <br><hr><br>
+  <br>
 
   <a href="https://www.npmjs.com/package/react-state-hooks">
    <img src="https://img.shields.io/npm/v/react-state-hooks.svg" alt="NPM" />
   </a>
-
-  <pre>npm install react-state-hooks</pre>
 </div>
 
-<br><hr><br>
+---
 
 ## Hooks
 
