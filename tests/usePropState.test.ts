@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react';
-import { usePropState } from '../src';
+import usePropState from '../src/usePropState';
 
 describe('usePropState()', () => {
   test('initialValue', () => {
