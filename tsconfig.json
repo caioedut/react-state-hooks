@@ -13,6 +13,6 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": [
-    "lib/**/*"
+    "src/**/*"
   ]
 }
