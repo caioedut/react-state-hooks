@@ -7,7 +7,7 @@ export default function useListState<T>(initialState?: T[]) {
 
   const set = useCallback(
     (items: T[]) => {
-      listRef.current = items;
+      listRef.current.splice(0, listRef.current.length, ...items);
       render();
     },
     [listRef.current],
@@ -16,8 +16,7 @@ export default function useListState<T>(initialState?: T[]) {
   const actions = useMemo(
     () => ({
       push: (...items: T[]) => {
-        listRef.current.concat(items);
-        set(listRef.current);
+        set([...listRef.current, ...items]);
       },
 
       insert: (index: number, item: T) => {
@@ -50,7 +49,7 @@ export default function useListState<T>(initialState?: T[]) {
         set(listRef.current);
       },
 
-      filter: (predicate: (value: T, index: number, array: T[]) => T[]) => {
+      filter: (predicate: (value: T, index: number, array: T[]) => boolean) => {
         set(listRef.current.filter(predicate));
       },
     }),
