@@ -9,6 +9,6 @@ pmex('npm version patch');
 
 // pmex('npm publish');
 
-execSync('npm publish', { cwd: './dist' });
+execSync('npm publish', { stdio: 'inherit', cwd: './dist' });
 
 execSync('git push', { stdio: 'inherit' });
