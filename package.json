@@ -16,7 +16,7 @@
   "files": [
     "dist"
   ],
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "tsx scripts/test.ts",
     "build": "tsx scripts/build.ts",

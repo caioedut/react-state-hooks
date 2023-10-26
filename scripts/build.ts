@@ -1,4 +1,4 @@
-import { rmSync } from 'fs';
+import { rmSync, copyFileSync } from 'fs';
 import pmex from 'pmex';
 
 // Remove current build
@@ -8,3 +8,5 @@ rmSync('dist', {
 });
 
 pmex('tsc --build --force');
+
+copyFileSync('package.json', 'dist/package.json');
