@@ -7,6 +7,8 @@ pmex('tsc --build --force');
 
 pmex('npm version patch');
 
-pmex('npm publish dist');
+// pmex('npm publish');
+
+execSync('npm publish', { cwd: './dist' });
 
 execSync('git push', { stdio: 'inherit' });
