@@ -32,9 +32,9 @@ export default function useNumberState(initialState?: number, options: NumberSta
 
   const setState = useCallback(
     (value: number | ((current?: number) => number)) => {
-      _setSetate(value instanceof Function ? value(state) : value);
+      _setSetate(resolveValue(value instanceof Function ? value(state) : value));
     },
-    [state],
+    [state, resolveValue],
   );
 
   const inc = useCallback(
