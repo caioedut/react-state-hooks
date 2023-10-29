@@ -21,6 +21,13 @@
 
 ## Hooks
 
+- [`useListState`](#useListState) — manage an array of values as state, providing functions to add, remove, update and reorder the list items.
+- [`useNumberState`](#useNumberState) — manage a numeric value as state, providing functions to increment, decrement and set the value.
+- [`useObjectState`](#useObjectState) — manage an object as state, providing functions to update the object properties in an immutable way.
+- [`usePropState`](#usePropState) — manage a component property as state, synchronizing the property value with the component internal state value.
+- [`useStoreState`](#useStoreState) — manage a global application state, using a simple and reactive store.
+- [`useToggleState`](#useToggleState) — manage a boolean value as state, providing a function to toggle the value between true and false.
+
 ### useListState
 ```jsx
 // useListState<T>(initialState?: T[])
@@ -105,8 +112,6 @@ const [name, setName] = usePropState(props.name, 'Richard')
 ---
 
 ### useStoreState
-
-Used to create and manage global states.
 
 ```jsx
 // useStoreState<T>(key: string, initialState?: T | (() => T))
