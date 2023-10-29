@@ -32,7 +32,7 @@ describe('useHistoryState()', () => {
 
     act(() => setState(2));
 
-    expect(history).toEqual([1, 2, 3]);
+    expect(history).toEqual([1, 2]);
   });
 
   test('setState() must respect length rule', () => {
