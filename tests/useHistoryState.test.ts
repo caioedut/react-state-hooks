@@ -19,20 +19,20 @@ describe('useHistoryState()', () => {
 
   test('setState() without initialValue should increment the history once', () => {
     const { result } = renderHook(() => useHistoryState());
-    const [, setState, stateHistory] = result.current;
+    const [, setState, { history }] = result.current;
 
     act(() => setState(1));
 
-    expect(stateHistory).toEqual([1]);
+    expect(history).toEqual([1]);
   });
 
   test('setState() with initialValue should increment the history twice', () => {
     const { result } = renderHook(() => useHistoryState(1));
-    const [, setState, stateHistory] = result.current;
+    const [, setState, { history }] = result.current;
 
     act(() => setState(2));
 
-    expect(stateHistory).toEqual([1, 2, 3]);
+    expect(history).toEqual([1, 2, 3]);
   });
 
   test('setState() must respect length rule', () => {
