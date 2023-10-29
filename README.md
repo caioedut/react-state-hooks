@@ -1,19 +1,28 @@
 <div align="center">
-  <h1>⚛️ React State Hooks</h1>
-  <p>Collection of hooks to manage state.</p>
+  <h1>
+    <br>
+    ⚛️ React State Hooks
+    <br>
+  </h1>
 
-  <br>
+  <p>
+    <br>
+    Collection of hooks to manage state.
+    <br>
+  </p>
 
   <a href="https://www.npmjs.com/package/react-state-hooks">
    <img src="https://img.shields.io/npm/v/react-state-hooks.svg" alt="NPM" />
   </a>
 </div>
 
+<br>
 ---
+<br>
 
 ## Hooks
 
-### `useListState`
+### useListState
 ```jsx
 // useListState<T>(initialState?: T[])
 
@@ -51,7 +60,7 @@ filter((item) => item.age > 21)
 
 ---
 
-### `useNumberState`
+### useNumberState
 ```jsx
 // useNumberState(initialState?: number, options?: { min?: number, max?: number, step?: number })
 
@@ -70,7 +79,7 @@ const [...] = useNumberState(0, { min: 2, max: 10, step: 2 })
 
 ---
 
-### `useObjectState`
+### useObjectState
 ```jsx
 // useObjectState<T>(initialState?: T)
 
@@ -86,7 +95,7 @@ resetObj({});
 
 ---
 
-### `usePropState`
+### usePropState
 ```jsx
 // usePropState<T>(prop: T | undefined, initialState?: T | (() => T))
 
@@ -96,7 +105,20 @@ const [name, setName] = usePropState(props.name, 'Richard')
 
 ---
 
-### `useToggleState`
+### useStoreState
+
+Used to create and manage global states.
+
+```jsx
+// useStoreState<T>(key: string, initialState?: T | (() => T))
+
+// Example:
+const [name, setName] = useStoreState('user.name', 'Richard')
+```
+
+---
+
+### useToggleState
 ```jsx
 // useToggleState(initialState?: boolean)
 
