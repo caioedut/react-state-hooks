@@ -22,12 +22,12 @@
 ## Hooks
 
 - [`useHistoryState`](#useHistoryState) — manage a state, by keeping their history.
-- [`useListState`](#useListState) — manage an array of values as state, providing functions to add, remove, update and reorder the list items.
-- [`useNumberState`](#useNumberState) — manage a numeric value as state, providing functions to increment, decrement and set the value.
-- [`useObjectState`](#useObjectState) — manage an object as state, providing functions to update the object properties in an immutable way.
-- [`usePropState`](#usePropState) — manage a component property as state, synchronizing the property value with the component internal state value.
-- [`useStoreState`](#useStoreState) — manage a global application state, using a simple and reactive store.
-- [`useToggleState`](#useToggleState) — manage a boolean value as state, providing a function to toggle the value between true and false.
+- [`useListState`](#useListState) — manage an array, providing functions to manipulate it.
+- [`useNumberState`](#useNumberState) — manage a numeric state.
+- [`useObjectState`](#useObjectState) — manage a object state.
+- [`usePropState`](#usePropState) — manage a component prop as state, synchronizing the prop value with the state.
+- [`useStoreState`](#useStoreState) — manage a global application state.
+- [`useToggleState`](#useToggleState) — manage a boolean state.
 
 ### useHistoryState
 ```jsx
