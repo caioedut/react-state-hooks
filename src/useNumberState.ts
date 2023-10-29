@@ -28,11 +28,11 @@ export default function useNumberState(initialState?: number, options: NumberSta
     [options],
   );
 
-  const [state, _setSetate] = useState(resolveValue(initialState));
+  const [state, _setState] = useState(resolveValue(initialState));
 
   const setState = useCallback(
     (value: number | ((current?: number) => number)) => {
-      _setSetate(resolveValue(value instanceof Function ? value(state) : value));
+      _setState(resolveValue(value instanceof Function ? value(state) : value));
     },
     [state, resolveValue],
   );

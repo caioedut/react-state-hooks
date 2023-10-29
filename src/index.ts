@@ -1,3 +1,4 @@
+export { default as useHistoryState } from './useHistoryState';
 export { default as useListState } from './useListState';
 export { default as useNumberState } from './useNumberState';
 export { default as useObjectState } from './useObjectState';

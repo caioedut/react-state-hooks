@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react';
 import useNumberState from '../src/useNumberState';
 
-describe('userNumberState()', () => {
+describe('useNumberState()', () => {
   test('initialValue', () => {
     const hook = renderHook(() => useNumberState(0));
     const [state] = hook.result.current;

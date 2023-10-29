@@ -21,12 +21,27 @@
 
 ## Hooks
 
+- [`useHistoryState`](#useHistoryState) — manage a state, by keeping their history.
 - [`useListState`](#useListState) — manage an array of values as state, providing functions to add, remove, update and reorder the list items.
 - [`useNumberState`](#useNumberState) — manage a numeric value as state, providing functions to increment, decrement and set the value.
 - [`useObjectState`](#useObjectState) — manage an object as state, providing functions to update the object properties in an immutable way.
 - [`usePropState`](#usePropState) — manage a component property as state, synchronizing the property value with the component internal state value.
 - [`useStoreState`](#useStoreState) — manage a global application state, using a simple and reactive store.
 - [`useToggleState`](#useToggleState) — manage a boolean value as state, providing a function to toggle the value between true and false.
+
+### useHistoryState
+```jsx
+// useHistoryState(initialState?: T, length?: number = 10)
+
+// Example:
+const [value, setValue, { history, rollback }] = useHistoryState(0)
+
+// Rollback
+setValue(2) // value is now 2
+rollback() // value is now 0
+```
+
+---
 
 ### useListState
 ```jsx
@@ -127,5 +142,5 @@ const [name, setName] = useStoreState('user.name', 'Richard')
 // useToggleState(initialState?: boolean)
 
 // Example:
-const [isVisible, togleIsVisible] = useToggleState(false)
+const [isVisible, toggleIsVisible] = useToggleState(false)
 ```
