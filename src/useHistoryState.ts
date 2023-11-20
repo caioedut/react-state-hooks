@@ -1,13 +1,12 @@
 import { useCallback, useRef, useState } from 'react';
-import { SetStateParam } from './types';
 
 export default function useHistoryState<T>(initialState?: T, length: number = 10) {
-  const historyRef = useRef<T[]>(typeof initialState === 'undefined' ? [] : [initialState]);
+  const historyRef = useRef<(T | undefined)[]>(typeof initialState === 'undefined' ? [] : [initialState]);
 
-  const [state, _setState] = useState(initialState);
+  const [state, _setState] = useState<T | undefined>(initialState);
 
-  const setState = useCallback(
-    (value: SetStateParam<T>) => {
+  const setState: typeof _setState = useCallback(
+    (value) => {
       const next = value instanceof Function ? value(state) : value;
 
       if (next !== historyRef.current.at(-1)) {
@@ -19,7 +18,6 @@ export default function useHistoryState<T>(initialState?: T, length: number = 10
         }
       }
 
-      // @ts-expect-error
       _setState(next);
     },
     [length, state, historyRef],

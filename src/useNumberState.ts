@@ -30,8 +30,8 @@ export default function useNumberState(initialState?: number, options: NumberSta
 
   const [state, _setState] = useState(resolveValue(initialState));
 
-  const setState = useCallback(
-    (value: number | ((current?: number) => number)) => {
+  const setState: typeof _setState = useCallback(
+    (value) => {
       _setState(resolveValue(value instanceof Function ? value(state) : value));
     },
     [state, resolveValue],

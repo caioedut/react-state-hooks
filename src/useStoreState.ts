@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Dispatch, SetStateAction, useCallback, useEffect, useMemo, useState } from 'react';
 
 const store: { [key: string]: any } = {};
 
@@ -8,9 +8,9 @@ const listeners: { [key: string]: any[] } = {};
  * @reference https://yoavik.com/snippets/use-global-state
  */
 export default function useStoreState<T>(key: string, initialState?: T | (() => T)) {
-  const [state, _setState] = useState(store[key] ?? initialState);
+  const [state, _setState] = useState<T | undefined>(store[key] ?? initialState);
 
-  const setState = useCallback((value: T | ((current?: T) => T)) => {
+  const setState: typeof _setState = useCallback((value) => {
     const next = value instanceof Function ? value(store[key]) : value;
     listeners[key].forEach((listener) => listener(next));
     store[key] = next;
