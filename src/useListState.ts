@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useReducer, useRef } from 'react';
 
 export default function useListState<T>(initialState?: T[]) {
-  const listRef = useRef(initialState ?? []);
+  const listRef = useRef<T[]>(initialState ?? []);
 
   const [_, render] = useReducer((current) => !current, false);
 
