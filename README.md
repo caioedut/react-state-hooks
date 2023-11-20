@@ -24,7 +24,7 @@
 - [`useHistoryState`](#useHistoryState) — manage a state, by keeping their history.
 - [`useListState`](#useListState) — manage an array, providing functions to manipulate it.
 - [`useNumberState`](#useNumberState) — manage a numeric state.
-- [`useObjectState`](#useObjectState) — manage a object state.
+- [`useObjectState`](#useObjectState) — manage an object state.
 - [`usePropState`](#usePropState) — manage a component prop as state, synchronizing the prop value with the state.
 - [`useStoreState`](#useStoreState) — manage a global application state.
 - [`useToggleState`](#useToggleState) — manage a boolean state.

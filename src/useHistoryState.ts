@@ -1,9 +1,9 @@
 import { useCallback, useRef, useState } from 'react';
 
 export default function useHistoryState<T>(initialState?: T, length: number = 10) {
-  const historyRef = useRef<(T | undefined)[]>(typeof initialState === 'undefined' ? [] : [initialState]);
+  const historyRef = useRef<T[]>(typeof initialState === 'undefined' ? [] : [initialState]);
 
-  const [state, _setState] = useState<T | undefined>(initialState);
+  const [state, _setState] = useState<T>(initialState as T);
 
   const setState: typeof _setState = useCallback(
     (value) => {
