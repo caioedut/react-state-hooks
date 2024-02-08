@@ -21,6 +21,7 @@
 
 ## Hooks
 
+- [`useAsyncState`](#useAsyncState) — manage a promise with returning value.
 - [`useHistoryState`](#useHistoryState) — manage a state, by keeping their history.
 - [`useListState`](#useListState) — manage an array, providing functions to manipulate it.
 - [`useNumberState`](#useNumberState) — manage a numeric state.
@@ -29,9 +30,26 @@
 - [`useStoreState`](#useStoreState) — manage a global application state.
 - [`useToggleState`](#useToggleState) — manage a boolean state.
 
+### useAsyncState
+```jsx
+// useAsyncState<T>(getter: () => Promise<T>)
+
+// Example:
+const { data: user, error, isLoading, revalidate } = useAsyncState(getUser)
+
+async function getUser() {
+    return { name: 'Richard' }
+}
+
+// Re-run getter
+revalidate()
+```
+
+---
+
 ### useHistoryState
 ```jsx
-// useHistoryState(initialState?: T, length?: number = 10)
+// useHistoryState<T>(initialState?: T, length: number = 10)
 
 // Example:
 const [value, setValue, { history, rollback }] = useHistoryState(0)
