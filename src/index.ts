@@ -1,3 +1,4 @@
+export { default as useAsyncState } from './useAsyncState';
 export { default as useHistoryState } from './useHistoryState';
 export { default as useImmutableState } from './useImmutableState';
 export { default as useListState } from './useListState';
