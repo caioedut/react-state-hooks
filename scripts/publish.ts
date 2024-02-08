@@ -1,16 +1,15 @@
 import pmex from 'pmex';
 import { execSync } from 'child_process';
-import { copyFileSync } from 'fs';
+
+const args = process.argv.slice(2);
 
 pmex('test');
 
 pmex('build');
 
-pmex('npm version patch');
+if (!args.includes('--no-version')) {
+  pmex('npm version patch');
+  execSync('git push', { stdio: 'inherit' });
+}
 
-copyFileSync('package.json', 'dist/package.json');
-copyFileSync('README.md', 'dist/README.md');
-
-execSync('npm publish', { stdio: 'inherit', cwd: './dist' });
-
-execSync('git push', { stdio: 'inherit' });
+pmex('npm publish', { stdio: 'inherit' });
