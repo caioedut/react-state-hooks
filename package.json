@@ -8,12 +8,22 @@
     "state"
   ],
   "license": "MIT",
-  "repository": "https://github.com/caioedut/react-state-hooks",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caioedut/react-state-hooks"
+  },
   "author": {
     "name": "Caio Teixeira",
     "email": "caioedut@gmail.com"
   },
-  "main": "index.js",
+  "type": "commonjs",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "tsx scripts/test.ts",
     "build": "tsx scripts/build.ts",
@@ -21,22 +31,25 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.23.2",
-    "@babel/preset-react": "^7.22.15",
-    "@testing-library/react": "^14.0.0",
-    "@types/jest": "^29.5.6",
-    "@types/node": "^20.8.9",
-    "@types/react": "^18.2.33",
+    "@babel/preset-react": "^7.23.3",
+    "@parcel/packager-ts": "^2.11.0",
+    "@parcel/transformer-typescript-types": "2.11.0",
+    "@testing-library/react": "^14.2.1",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.16",
+    "@types/react": "^18.2.55",
     "babel-jest": "^29.7.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "parcel": "^2.11.0",
     "pmex": "^0.0.35",
-    "prettier": "^3.0.3",
+    "prettier": "^3.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-test-renderer": "^18.2.0",
-    "ts-jest": "^29.1.1",
-    "tsx": "^3.14.0",
-    "typescript": "^5.2.2"
+    "ts-jest": "^29.1.2",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
   },
   "peerDependencies": {
     "react": "*"
