@@ -1,5 +1,6 @@
 {
   "name": "react-state-hooks",
+  "description": "Collection of hooks to manage state.",
   "version": "0.1.9",
   "keywords": [
     "react",
