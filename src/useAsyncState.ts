@@ -5,6 +5,14 @@ export default function useAsyncState<T>(getter: () => Promise<T>) {
   const [error, setError] = useState<Error>();
   const [isLoading, setIsLoading] = useState(false);
 
+  const setData: typeof setState = (value) => {
+    setError(undefined);
+    setIsLoading(false);
+    setState((current) => {
+      return value instanceof Function ? value(current) : value;
+    });
+  };
+
   const revalidate = useCallback(async () => {
     setIsLoading(true);
     setError(undefined);
@@ -18,12 +26,12 @@ export default function useAsyncState<T>(getter: () => Promise<T>) {
     }
 
     setIsLoading(false);
-  }, [getter]);
+  }, []);
 
   // Reset
   useEffect(() => {
     revalidate();
-  }, [getter]);
+  }, [revalidate]);
 
-  return { data: state, error, isLoading, revalidate };
+  return [state, setData, { error, isLoading, revalidate }] as const;
 }
