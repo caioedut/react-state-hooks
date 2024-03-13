@@ -22,6 +22,7 @@
 ## Hooks
 
 - [`useAsyncState`](#useAsyncState) — manage a promise with returning value.
+- [`useDependentState`](#useDependentState) — manage a state with dependencies.
 - [`useHistoryState`](#useHistoryState) — manage a state, by keeping their history.
 - [`useListState`](#useListState) — manage an array, providing functions to manipulate it.
 - [`useNumberState`](#useNumberState) — manage a numeric state.
@@ -43,6 +44,31 @@ async function getUser() {
 
 // Re-run getter
 revalidate()
+```
+
+---
+
+### useDependentState
+```jsx
+// useDependentState<T>(setter: (current?: T) => T, deps: any[])
+
+// Example:
+const { user } = useAuth();
+
+const [value, setValue] = useDependentState(() => {
+  return {
+    userId: user.id,
+    page: 1,
+  }
+}, [user]);
+
+// Manual change state
+setValue((current) => {
+  return {
+    ...current,
+    page: 2
+  }
+});
 ```
 
 ---
