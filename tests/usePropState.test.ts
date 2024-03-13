@@ -1,23 +1,40 @@
 import { act, renderHook } from '@testing-library/react';
 import usePropState from '../src/usePropState';
 import { useState } from 'react';
-import useDependentState from '../src/useDependentState';
 
 describe('usePropState()', () => {
-  test('initialValue', () => {
-    const nameProp = undefined;
+  test('initialValue(raw)', () => {
+    const name = undefined;
 
-    const { result } = renderHook(() => usePropState(nameProp, 'Richard'));
+    const { result } = renderHook(() => usePropState(name, 'Richard'));
 
     expect(result.current[0]).toEqual('Richard');
   });
 
-  test('setState() should update the state value', async () => {
-    const nameProp = undefined;
+  test('initialValue(function)', () => {
+    const name = undefined;
 
-    const { result, rerender } = renderHook(() => usePropState(nameProp, 'Richard'));
+    const { result } = renderHook(() => usePropState(name, () => 'Richard'));
+
+    expect(result.current[0]).toEqual('Richard');
+  });
+
+  test('setState(raw) should update the state value', async () => {
+    const name = 'Richard';
+
+    const { result, rerender } = renderHook(() => usePropState(name));
 
     act(() => result.current[1]('Ward'));
+
+    expect(result.current[0]).toEqual('Ward');
+  });
+
+  test('setState(function) should update the state value', async () => {
+    const name = 'Richard';
+
+    const { result, rerender } = renderHook(() => usePropState(name));
+
+    act(() => result.current[1](() => 'Ward'));
 
     expect(result.current[0]).toEqual('Ward');
   });
