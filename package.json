@@ -1,7 +1,7 @@
 {
   "name": "react-state-hooks",
   "description": "Collection of hooks to manage state.",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "keywords": [
     "react",
     "react-native",
