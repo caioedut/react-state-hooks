@@ -1,37 +1,34 @@
-import { useCallback, useEffect, useState } from 'react';
+import { DependencyList, useCallback, useEffect, useState } from 'react';
 
-export default function useAsyncState<T>(getter: () => Promise<T>) {
+export default function useAsyncState<T>(getter: () => Promise<T>, deps: DependencyList = []) {
   const [state, setState] = useState<T>();
-  const [error, setError] = useState<Error>();
-  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<unknown>();
+  const [isPending, setIsPending] = useState(true);
 
-  const setData: typeof setState = (value) => {
+  const setData: typeof setState = useCallback((value) => {
     setError(undefined);
-    setIsLoading(false);
-    setState((current) => {
-      return value instanceof Function ? value(current) : value;
-    });
-  };
+    setIsPending(false);
+    setState((current) => (value instanceof Function ? value(current) : value));
+  }, []);
 
   const revalidate = useCallback(async () => {
-    setIsLoading(true);
+    setIsPending(true);
     setError(undefined);
 
     try {
-      const res = await getter();
-      setState(res);
+      setState(await getter());
     } catch (err) {
       setState(undefined);
-      setError(err as Error);
+      setError(err);
     }
 
-    setIsLoading(false);
-  }, []);
+    setIsPending(false);
+  }, deps);
 
   // Reset
   useEffect(() => {
     revalidate();
   }, [revalidate]);
 
-  return [state, setData, { error, isLoading, revalidate }] as const;
+  return [state, setData, { error, isPending, revalidate }] as const;
 }

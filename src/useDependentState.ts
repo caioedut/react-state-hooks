@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react';
+import { DependencyList, useMemo, useState } from 'react';
 
-export default function useDependentState<T>(factory: (current?: T) => T, deps: unknown[]) {
+export default function useDependentState<T>(factory: (current?: T) => T, deps: DependencyList = []) {
   const [state, setState] = useState<T>(factory(undefined));
 
   useMemo(() => {

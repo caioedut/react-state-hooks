@@ -34,6 +34,10 @@ export default function useStoreState<T>(key: string, initialState?: T | (() => 
     return () => {
       const index = listeners[key].indexOf(listener);
       listeners[key].splice(index, 1);
+
+      if (listeners[key]?.length) {
+        delete listeners[key];
+      }
     };
   }, []);
 
