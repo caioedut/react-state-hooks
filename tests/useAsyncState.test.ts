@@ -27,13 +27,13 @@ describe('useAsyncState()', () => {
   test('getter() should set isLoading', async () => {
     const { result } = renderHook(() => useAsyncState(async () => 'Hello World!'));
 
-    expect(result.current[2].isLoading).toEqual(true);
+    expect(result.current[2].isPending).toEqual(true);
 
     await waitFor(() => {
       expect(result.current[0]).toBeDefined();
     });
 
-    expect(result.current[2].isLoading).toEqual(false);
+    expect(result.current[2].isPending).toEqual(false);
   });
 
   test('getter() should set error and clean data', async () => {
@@ -48,7 +48,7 @@ describe('useAsyncState()', () => {
     });
 
     expect(result.current[0]).toEqual(undefined);
-    expect(result.current[2].isLoading).toEqual(false);
+    expect(result.current[2].isPending).toEqual(false);
     expect(result.current[2].error).toBeInstanceOf(Error);
   });
 });

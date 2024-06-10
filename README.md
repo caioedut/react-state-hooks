@@ -36,10 +36,15 @@
 // useAsyncState<T>(getter: () => Promise<T>)
 
 // Example:
-const [user, setUser, { error, isLoading, revalidate }] = useAsyncState(getUser)
+const userId = 1;
+
+const [user, setUser, { error, isPending, revalidate }] = useAsyncState(getUser, [userId])
 
 async function getUser() {
-    return { name: 'Richard' }
+    return {
+      id: userId,
+      name: 'Richard',
+    };
 }
 
 // Re-run getter
