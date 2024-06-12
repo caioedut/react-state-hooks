@@ -32,8 +32,10 @@ export default function useStoreState<T>(key: string, initialState?: T | (() => 
 
     // Cleanup when unmounting
     return () => {
-      const index = listeners[key].indexOf(listener);
-      listeners[key].splice(index, 1);
+      if (listeners[key]?.length) {
+        const index = listeners[key].indexOf(listener);
+        listeners[key].splice(index, 1);
+      }
 
       if (listeners[key]?.length) {
         delete listeners[key];
