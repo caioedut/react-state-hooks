@@ -1,60 +1,56 @@
-import { useCallback, useMemo, useReducer, useRef } from 'react';
+import { useMemo, useState } from 'react';
 
-export default function useListState<T>(initialState?: T[]) {
-  const listRef = useRef<T[]>(initialState ?? []);
-
-  const [_, render] = useReducer((current) => !current, false);
-
-  const set = useCallback(
-    (items: T[]) => {
-      listRef.current.splice(0, listRef.current.length, ...items);
-      render();
-    },
-    [listRef.current],
-  );
+export default function useListState<T>(initialState: T[] = []) {
+  const [list, setList] = useState<T[]>(initialState);
 
   const actions = useMemo(
     () => ({
+      set: (items: T[]) => {
+        setList([...items]);
+      },
+
       push: (...items: T[]) => {
-        set([...listRef.current, ...items]);
+        setList((prev) => [...prev, ...items]);
       },
 
       insert: (index: number, item: T) => {
-        listRef.current.splice(index, 0, item);
-        set(listRef.current);
+        setList((prev) => {
+          const next = [...prev];
+          next.splice(index, 0, item);
+          return next;
+        });
       },
 
       remove: (indexOrHandler: number | ((item: T, index: number) => boolean)) => {
-        if (typeof indexOrHandler === 'function') {
-          indexOrHandler = listRef.current.findIndex(indexOrHandler);
-        }
-
-        set(listRef.current.filter((_, index) => index !== indexOrHandler));
+        setList((prev) => {
+          return typeof indexOrHandler === 'function'
+            ? prev.filter((item, index) => !indexOrHandler(item, index)) // Remove todas as ocorrências se for uma função
+            : prev.filter((_, i) => i !== indexOrHandler); // Remove pelo índice
+        });
       },
 
       update: (indexOrHandler: number | ((item: T, index: number) => boolean), newItem: T) => {
-        if (typeof indexOrHandler === 'function') {
-          indexOrHandler = listRef.current.findIndex(indexOrHandler);
-        }
-
-        set(listRef.current.map((item, index) => (index === indexOrHandler ? newItem : item)));
+        setList((prev) => {
+          return typeof indexOrHandler === 'function'
+            ? prev.map((item, index) => (indexOrHandler(item, index) ? newItem : item)) // Atualiza baseado na função
+            : prev.map((item, index) => (index === indexOrHandler ? newItem : item)); // Atualiza pelo índice
+        });
       },
 
       clear: () => {
-        set([]);
+        setList([]);
       },
 
       sort: (compareFn?: (a: T, b: T) => number) => {
-        listRef.current.sort(compareFn);
-        set(listRef.current);
+        setList((prev) => [...prev].sort(compareFn));
       },
 
       filter: (predicate: (value: T, index: number, array: T[]) => boolean) => {
-        set(listRef.current.filter(predicate));
+        setList((prev) => prev.filter(predicate));
       },
     }),
-    [listRef.current, set],
+    [],
   );
 
-  return [listRef.current, { set, ...actions }] as const;
+  return [list, actions] as const;
 }
