@@ -10,11 +10,14 @@ const listeners: { [key: string]: any[] } = {};
 export default function useStoreState<T>(key: string, initialState?: T | (() => T)) {
   const [state, _setState] = useState<T>(store[key] ?? initialState);
 
-  const setState: typeof _setState = useCallback((value) => {
-    const next = value instanceof Function ? value(store[key]) : value;
-    listeners[key].forEach((listener) => listener(next));
-    store[key] = next;
-  }, []);
+  const setState: typeof _setState = useCallback(
+    (value) => {
+      const next = value instanceof Function ? value(store[key]) : value;
+      store[key] = next;
+      listeners[key].forEach((listener) => listener(next));
+    },
+    [key],
+  );
 
   // #HACK onBeforeMount
   useMemo(() => {
@@ -23,7 +26,7 @@ export default function useStoreState<T>(key: string, initialState?: T | (() => 
 
     // Create an empty array of listener on the first call with this key
     listeners[key] = listeners[key] ?? [];
-  }, []);
+  }, [key]);
 
   useEffect(() => {
     // Register the observer
@@ -33,9 +36,11 @@ export default function useStoreState<T>(key: string, initialState?: T | (() => 
     // Cleanup when unmounting
     return () => {
       const index = listeners[key].indexOf(listener);
-      listeners[key].splice(index, 1);
+      if (index > -1) {
+        listeners[key].splice(index, 1);
+      }
     };
-  }, []);
+  }, [key]);
 
   return [state, setState] as const;
 }
