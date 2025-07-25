@@ -22,6 +22,7 @@
 ## Hooks
 
 - [`useAsyncState`](#useAsyncState) — manage a promise with returning value.
+- [`useDebounceState`](#useDebounceState) — manage a state with debounce, updating the value after a specified delay.
 - [`useDependentState`](#useDependentState) — manage a state with dependencies.
 - [`useHistoryState`](#useHistoryState) — manage a state, by keeping their history.
 - [`useListState`](#useListState) — manage an array, providing functions to manipulate it.
@@ -49,6 +50,22 @@ async function getUser() {
 
 // Re-run getter
 revalidate()
+```
+
+---
+
+### useDebounceState
+```jsx
+// useDebounceState<T>(initialValue: T, delay: number = 500)
+
+// Example:
+const [debouncedValue, setValue] = useDebounceState('');
+
+// Manual change state
+setValue('new value');
+
+// The debounced value will be updated after 500ms of inactivity
+
 ```
 
 ---
