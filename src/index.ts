@@ -1,4 +1,5 @@
 export { default as useAsyncState } from './useAsyncState';
+export { default as useDebounceState } from './useDebounceState';
 export { default as useDependentState } from './useDependentState';
 export { default as useHistoryState } from './useHistoryState';
 export { default as useImmutableState } from './useImmutableState';
