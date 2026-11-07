@@ -1,18 +1,24 @@
 {
   "compilerOptions": {
-    "module": "esnext",
-    "moduleResolution": "node",
-    "target": "es5",
-    "lib": ["DOM", "ESNext"],
-    "outDir": "./dist",
-    "jsx": "react-jsx",
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "types": ["node"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "rootDir": ".",
+    "noEmit": true,
+    "isolatedModules": true,
     "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx"
   },
-  "include": [
-    "src/**/*"
-  ]
+  "include": ["src/**/*", "tests/**/*", "vitest.config.ts", "tsdown.config.ts"]
 }

@@ -1,8 +1,10 @@
-import pmex, { args } from 'pmex';
+import { pmex, args } from 'pmex';
 import { execSync } from 'child_process';
 
-pmex(`prettier "{scripts,src}/**/*.{js,jsx,ts,tsx}" --check`);
+pmex('oxfmt --check');
 
-pmex(`tsc --noEmit`);
+pmex('oxlint .');
 
-execSync(`jest ${args().$}`, { stdio: 'inherit' });
+pmex('tsc --noEmit');
+
+execSync(`vitest run ${args().$ ?? ''}`, { stdio: 'inherit' });

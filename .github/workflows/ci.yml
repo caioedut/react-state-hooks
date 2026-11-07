@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Vitest 5 needs Node ^22.12 or >=24
+        node: [22, 24]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - uses: oven-sh/setup-bun@v2
+
+      - run: bun install
+
+      # Format check, lint, type check and tests with the 100% coverage threshold
+      - run: bun run test:coverage
+
+  package:
+    name: Build and check the package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - uses: oven-sh/setup-bun@v2
+
+      - run: bun install
+
+      - run: bun run build
+
+      # Checks that the types and the ESM/CJS entry points resolve correctly for consumers
+      - run: bun run check:package
