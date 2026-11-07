@@ -40,7 +40,7 @@
   },
   "scripts": {
     "test": "tsx scripts/test.ts",
-    "test:coverage": "bun scripts/test.ts --coverage",
+    "test:coverage": "tsx scripts/test.ts --coverage",
     "lint": "oxlint",
     "format": "oxfmt",
     "typecheck": "tsc --noEmit",
