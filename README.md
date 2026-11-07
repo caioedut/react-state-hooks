@@ -106,7 +106,9 @@ function Todos() {
 Every hook follows the same rules:
 
 - **Named exports only**: `import { useX } from 'react-state-hooks'`.
-- **Tuples**: a hook that wraps a value returns `[value, setValue, extras?]`. `extras` is always an object, never a bare function. Collections (`useListState`, `useMapState`, `useSetState`) return `[value, actions]`.
+- **Tuples**: a hook that wraps a value returns `[value, setValue, extras?]`. `extras` is always an object, never a bare function.
+  - Hooks that manage a collection or only move through a fixed list have no free setter, so they return `[value, actions]`: `useListState`, `useMapState`, `useSetState` and `useCycleState`.
+  - Two hooks are simpler by nature: `useToggleState` returns `[value, toggle]`, and `useImmutableState` and `usePreviousState` return just the value.
 - **Setters behave like `useState`**: they accept a value or an updater function (`(previous) => next`), and updaters run in order inside the same batch.
 - **Lazy initial values**: wherever an initial value is accepted, a function that returns it is accepted too, and it runs only once.
 - **Stable functions**: setters and actions keep the same identity between renders, so they are safe in dependency arrays. The only exceptions depend on an input: `useHistoryState` (`length`), `useNumberState` (`min`, `max`, `step`) and `useStoreState` (`key`).
@@ -592,7 +594,7 @@ Everything is typed and inferred from your arguments. A few things worth knowing
 
 ## Compatibility
 
-Using the library only needs what your app already has. **You don't need TypeScript 7 or Node 24.**
+Using the library only needs what your app already has.
 
 | What                  | Requirement                                                                                           |
 | --------------------- | ----------------------------------------------------------------------------------------------------- |
@@ -600,8 +602,6 @@ Using the library only needs what your app already has. **You don't need TypeScr
 | TypeScript (optional) | The published types compile from TypeScript 4.9 up to the latest, in `strict` mode.                   |
 | Runtime               | Browsers, Node, React Native. The build is ES2020 and only uses `Map`, `Set`, `Object.is` and timers. |
 | Module format         | ESM and CommonJS, with types for both. Works with `node10`, `node16` and `bundler` resolution.        |
-
-TypeScript 7 and Node 22.12+ / 24 are only used to **develop** this library (build, lint and tests).
 
 ## Migrating from v1
 

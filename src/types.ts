@@ -7,8 +7,10 @@ import type { Dispatch, SetStateAction } from 'react';
  * - Hooks that wrap a single value return a tuple: `[value, setValue, extras?]`.
  *   `extras` is always a plain object (never a bare function), e.g. `{ inc, dec }`, `{ reset }`.
  * - Setters follow React's `Dispatch<SetStateAction<T>>` whenever the hook accepts arbitrary values.
- * - Collection hooks, and hooks that only navigate a fixed list, return `[value, actions]`
- *   (there is no free setter to put in the second position).
+ * - Collection hooks, and hooks that only navigate a fixed list (`useListState`, `useMapState`, `useSetState`,
+ *   `useCycleState`), return `[value, actions]` (there is no free setter to put in the second position).
+ * - Two hooks are simpler by nature: `useToggleState` returns `[value, toggle]`, and `useImmutableState`
+ *   and `usePreviousState` return just the value.
  * - Lazy initializers (`() => T`) are accepted wherever an initial value is accepted.
  * - Tuples are returned `as const`, so consumers get precise types.
  */
